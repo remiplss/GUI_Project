@@ -9,7 +9,7 @@ public class Customer
     private String lastName;
     protected int id;
   //  private Browse browse = new Browse();
- 
+ //Blabla pour que vous recuperiez les modifs de la classe
 
     public Customer(){}
     public Customer(String email, String password, String type, String firstName, String lastName,int id) 

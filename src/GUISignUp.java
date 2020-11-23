@@ -79,7 +79,7 @@ public class GUISignUp extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Type :");
 
-        typeTxt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jobseeker", "Employer", "Agency" }));
+        typeTxt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Job seeker", "Employer", "Agency" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,8 +178,8 @@ public class GUISignUp extends javax.swing.JFrame {
         customerBuffer.setType(typeTxt.getSelectedItem().toString());
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/gui_sql", "root", "roro94220"); //Connection
+            DataSource dataSource = new DataSource();
+            con1 = dataSource.createConnection();
 
             //send GUI value to the database//
             insert = con1.prepareStatement("insert into user(Email,Password,Type,FirstName,LastName)values(?,?,?,?,?)");

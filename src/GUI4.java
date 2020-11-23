@@ -155,8 +155,7 @@ public class GUI4 extends javax.swing.JFrame {
         ao.setPassword(customerBuffer.getPassword());
         System.out.println(customerBuffer.getPassword());
         ao.setType(customerBuffer.getType());
-        welcomeLabel.setText("Welcome " +ao.getEmail());
-    
+        welcomeLabel.setText("Welcome " +ao.getFirstName()+ " " +ao.getLastName());    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

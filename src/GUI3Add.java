@@ -1,3 +1,4 @@
+
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,16 +14,16 @@ public class GUI3Add extends javax.swing.JFrame {
 
     public Customer customerBuffer = new Customer();
     public Employer emp = new Employer();
-    
+
     Connection con1;
     PreparedStatement insert;
 
     public GUI3Add() {
         initComponents();
-        
+
     }
-    public void setCustomerBuffer(Customer cust)
-    {
+
+    public void setCustomerBuffer(Customer cust) {
         this.customerBuffer = cust;
     }
 
@@ -171,39 +172,38 @@ public class GUI3Add extends javax.swing.JFrame {
         emp.setJobTitle(txtJobTitle.getText());
         emp.setJobDescription(txtJobDesc.getText());
         emp.setCompany(txtCompany.getText());
-        
-        emp.setCalendar(txtBegDate.getSelectedDate());
-       emp.setDate(emp.getCalendar().getTime());//Convert calendar to java.util.date
-        emp.setDateSql(new java.sql.Date(emp.getDate().getTime()));//COnvert java.util.date to java.sql.date
-        
-        try{
-             Class.forName("com.mysql.jdbc.Driver");
 
-            con1 =DriverManager.getConnection("jdbc:mysql://localhost/gui_sql","root","roro94220"); //Connection
-            
+        emp.setCalendar(txtBegDate.getSelectedDate());
+        emp.setDate(emp.getCalendar().getTime());//Convert calendar to java.util.date
+        emp.setDateSql(new java.sql.Date(emp.getDate().getTime()));//COnvert java.util.date to java.sql.date
+
+        try {
+            DataSource dataSource = new DataSource();
+            con1 = dataSource.createConnection();
+
             //send request//
             insert = con1.prepareStatement("insert into job(JobTitle,BeginningDate,JobDescription,Company)values(?,?,?,?)");
-                //insert values in the query//
-                insert.setString(1,emp.getJobTitle());
-                insert.setDate(2,emp.getDateSql());
-                insert.setString(3,emp.getJobDescription());
-                insert.setString(4,emp.getCompany());
-                insert.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Job added successfully");
-                
-                ///It refreshes the text boxes as empty cases
-                txtJobTitle.setText("");
-                txtJobDesc.setText("");
-                txtCompany.setText("");
-                txtBegDate.setSelectedDate(null);
-                txtJobTitle.requestFocus();///It goes back to the first line, which is Job Title
-                
+            //insert values in the query//
+            insert.setString(1, emp.getJobTitle());
+            insert.setDate(2, emp.getDateSql());
+            insert.setString(3, emp.getJobDescription());
+            insert.setString(4, emp.getCompany());
+            insert.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Job added successfully");
+
+            ///It refreshes the text boxes as empty cases
+            txtJobTitle.setText("");
+            txtJobDesc.setText("");
+            txtCompany.setText("");
+            txtBegDate.setSelectedDate(null);
+            txtJobTitle.requestFocus();///It goes back to the first line, which is Job Title
+
         }//Exceptions//
         catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -213,10 +213,6 @@ public class GUI3Add extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_backActionPerformed
 
-    
-    
-    
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;

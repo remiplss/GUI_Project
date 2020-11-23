@@ -12,7 +12,7 @@ public class Employer extends Customer
     private java.util.Date date;
     private java.sql.Date dateSql;
 
-
+//Blabla pour que vous recuperiez les modifs de la classe
     public Employer(){}
     
     public Employer(String jobTitle, String jobDescription, String company, Calendar calendar, java.util.Date date,

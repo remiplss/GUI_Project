@@ -20,8 +20,8 @@ public class GUI2 extends javax.swing.JFrame {
     //public Customer customerBuffer = new Customer();
     public JobSeeker js = new JobSeeker();
     
-    Connection con1;
-    PreparedStatement insert;
+    Connection con1 = null;
+    PreparedStatement insert = null;
 
     /**
      * Creates new form GUI2
@@ -32,9 +32,9 @@ public class GUI2 extends javax.swing.JFrame {
         try{   
         ///Import Job values from SQL///
             
-        Class.forName("com.mysql.jdbc.Driver");
-            
-            con1 =DriverManager.getConnection("jdbc:mysql://localhost/gui_sql","root","roro94220"); //Connection
+             DataSource dataSource = new DataSource();
+            con1 = dataSource.createConnection();
+          
             
             String query = "SELECT * FROM job";
             Statement st= con1.createStatement();
@@ -272,10 +272,8 @@ public class GUI2 extends javax.swing.JFrame {
         js.setDateSql(new java.sql.Date(js.getDate().getTime()));//Convert java.util.date to java.sql.date
              
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            
-            con1 =DriverManager.getConnection("jdbc:mysql://localhost/gui_sql","root","roro94220"); //Connection
-                      
+            DataSource dataSource = new DataSource();
+            con1 = dataSource.createConnection();                            
             //String query ="UPDATE  user SET FirstName = ?,LastName = ?,Phone = ?,Job =CONCAT(Job,',',?),Date =CONCAT(Date,',',),Status = ?WHERE Email = ?"; //query
             String query ="INSERT INTO jobseekerlist Email,Job,Date,idUser values(?,?,?,?)";
             
@@ -298,8 +296,10 @@ public class GUI2 extends javax.swing.JFrame {
     public void transfert(Customer customerBuffer) //Transfering data from the buffer to the Job Seeker object
     {
         js.setFirstName(customerBuffer.getFirstName());
+        txtFirstName.setText(js.getFirstName());
         System.out.println(js.getFirstName());
         js.setLastName(customerBuffer.getLastName());
+        txtLastName.setText(js.getLastName());
         System.out.println(js.getLastName());
         js.setEmail(customerBuffer.getEmail());
         System.out.println(js.getEmail());

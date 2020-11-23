@@ -72,8 +72,9 @@ public class GUI4Delete extends javax.swing.JFrame {
     protected void displayJobs() {
         int c;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/gui_sql", "root", "roro94220");
+            DataSource dataSource = new DataSource();
+            con1 = dataSource.createConnection();
+            
             insert = con1.prepareStatement("select * from job");
             ResultSet rs = insert.executeQuery();
             ResultSetMetaData rss = rs.getMetaData();
@@ -228,8 +229,8 @@ public class GUI4Delete extends javax.swing.JFrame {
        
             if(dialogResult == JOptionPane.YES_OPTION)
             {               
-                Class.forName("com.mysql.jdbc.Driver");
-                con1 = DriverManager.getConnection("jdbc:mysql://localhost/gui_sql", "root", "roro94220");
+                DataSource dataSource = new DataSource();
+                con1 = dataSource.createConnection();         
                 insert = con1.prepareStatement("delete from job where idJob=?");
                 insert.setInt(1, id); 
                 insert.executeUpdate(); //It updates our dataBase

@@ -22,10 +22,11 @@ public class GUI3 extends javax.swing.JFrame {
         
         //transfert();
         try{   
-        //Import Job values from SQL//           
-        Class.forName("com.mysql.jdbc.Driver");
+        //Import Job values from SQL//
             
-            con1 =DriverManager.getConnection("jdbc:mysql://localhost/gui_sql","root","roro94220"); //Connection
+            DataSource dataSource = new DataSource();
+            con1 = dataSource.createConnection();
+          
             
             String query = "SELECT * FROM job"; //query
             Statement st= con1.createStatement();//get the values from job
@@ -190,7 +191,7 @@ public class GUI3 extends javax.swing.JFrame {
         emp.setPassword(customerBuffer.getPassword());
         System.out.println(emp.getPassword());
         emp.setType(customerBuffer.getType());
-        jLabel1.setText("Employer " +emp.getEmail());
+        jLabel1.setText("Employer " +emp.getFirstName()+" "+emp.getLastName());
     }
     
 
