@@ -47,8 +47,7 @@
 public class GUIWelcome extends javax.swing.JFrame {
 
     protected GUISignUp signUp=new GUISignUp();
-    protected GUI signIn= new GUI();
-    
+    protected GUI signIn= new GUI();    
     /**
      * Creates new form GUIWelcome
      */
@@ -145,6 +144,7 @@ public class GUIWelcome extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
