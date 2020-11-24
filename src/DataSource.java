@@ -58,7 +58,7 @@ public class DataSource {
             //Db parameters
             String url = "jdbc:mysql://localhost/gui_sql";
             String user = "root";
-            String password = "roro94220";
+            String password = "";
 
                 ///Create a connection to the database
             conn = DriverManager.getConnection(url, user, password);

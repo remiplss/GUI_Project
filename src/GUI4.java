@@ -112,7 +112,6 @@ public class GUI4 extends javax.swing.JFrame {
         String itemText = (String) actionChoice.getSelectedItem();
         switch (itemText) {
             case "Add new job(s)":
-                System.out.println("ok");
                 GUI3Add nvJob = new GUI3Add();
                 //nvJob.setCustomerBuffer(customerBuffer);
                 nvJob.setTitle("Interface to add new job(s)");
@@ -127,7 +126,9 @@ public class GUI4 extends javax.swing.JFrame {
                 ///Mettre à jour la bdd JOB et user  
                 break;
             case "Analyse most popular jobs":
-                System.out.println("soon posible");
+                PieChart pie = new PieChart("", "Job's popularity");
+                pie.pack();
+                pie.setVisible(true);
                 break;
     }//GEN-LAST:event_validateChoiceActionPerformed
     }

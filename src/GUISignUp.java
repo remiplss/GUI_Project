@@ -194,6 +194,7 @@ public class GUISignUp extends javax.swing.JFrame {
             insert.executeUpdate();
 
             JOptionPane.showMessageDialog(this, "Wonderful ! \nAccount succesfully created");//Display a message
+            
     }//GEN-LAST:event_validateInscriptionActionPerformed
      catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(GUISignUp.class.getName()).log(Level.SEVERE, null, ex);

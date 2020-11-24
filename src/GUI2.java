@@ -275,7 +275,7 @@ public class GUI2 extends javax.swing.JFrame {
             DataSource dataSource = new DataSource();
             con1 = dataSource.createConnection();                            
             //String query ="UPDATE  user SET FirstName = ?,LastName = ?,Phone = ?,Job =CONCAT(Job,',',?),Date =CONCAT(Date,',',),Status = ?WHERE Email = ?"; //query
-            String query ="INSERT INTO jobseekerlist Email,Job,Date,idUser values(?,?,?,?)";
+            String query ="INSERT INTO jobseekerlist (Email,Job,Date,idUser) values(?,?,?,?)";
             
             //Insert user values in the database//
             insert = con1.prepareStatement(query);
