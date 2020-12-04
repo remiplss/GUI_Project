@@ -25,7 +25,6 @@ public class GUI extends javax.swing.JFrame {
 
     public Customer customerBuffer = new Customer();
     
-
     Connection con1 = null;
     PreparedStatement insert = null;
 
@@ -203,7 +202,7 @@ public class GUI extends javax.swing.JFrame {
             DataSource dataSource = new DataSource();
             con1 = dataSource.createConnection();
 
-            String query = "SELECT FirstName,LastName FROM user where Email = ?";
+            String query = "SELECT FirstName,LastName,idUser FROM user where Email = ?";
             
             PreparedStatement stmt = con1.prepareStatement(query);
             stmt.setString(1, email);//We put the email in the query which is entered in parameters
@@ -214,6 +213,7 @@ public class GUI extends javax.swing.JFrame {
             {
                 customerBuffer.setFirstName(rs.getString("FirstName"));///We get the first name of the member which email is given in parameter
                 customerBuffer.setLastName(rs.getString("LastName"));
+                customerBuffer.setId(rs.getInt("idUser"));
             }
             con1.close();
 
@@ -235,6 +235,7 @@ public class GUI extends javax.swing.JFrame {
         customerBuffer.setPassword(txtPassword.getText());
         customerBuffer.setType(txtType.getSelectedItem().toString());
         getFirstAndLastName(customerBuffer.getEmail());
+        System.out.println("iduser = " +customerBuffer.getId());
         
         String query = "SELECT * FROM user where Email = ?"; //query
         String query2 = "SELECT * FROM user where Password = ?";

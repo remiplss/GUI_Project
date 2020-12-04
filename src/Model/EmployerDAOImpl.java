@@ -69,10 +69,10 @@ public class EmployerDAOImpl implements EmployerDAO {
      public void addEmployer(Employer emp) {
      }*/
     @Override
-    public void addJob(String jobTitle, java.sql.Date date, String jobDescription, String company) {
+    public void addJob(String jobTitle, java.sql.Date date, String jobDescription, String company,int id) {
         
 
-        String sql = "insert into job(JobTitle,BeginningDate,JobDescription,Company)values(?,?,?,?)";
+        String sql = "insert into job(JobTitle,BeginningDate,JobDescription,Company,idUser)values(?,?,?,?,?)";
 
         System.out.println("Debg");
         try {
@@ -85,6 +85,7 @@ public class EmployerDAOImpl implements EmployerDAO {
             insert.setDate(2, date);
             insert.setString(3, jobDescription);
             insert.setString(4, company);
+            insert.setInt(5,id);
             insert.executeUpdate();
             JOptionPane.showMessageDialog(null, "Job added successfully");
 

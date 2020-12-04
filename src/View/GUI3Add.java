@@ -24,9 +24,15 @@ public class GUI3Add extends javax.swing.JFrame {
     Connection con1;
     PreparedStatement insert;
 
-    public GUI3Add() {
+    public GUI3Add(Customer customerBuffer) {
+        this.customerBuffer = customerBuffer;
+        System.out.println("idUser "+customerBuffer.getId());
+        initComponents(); 
+    }
+    
+    //constructor by default
+    public GUI3Add(){
         initComponents();
-
     }
 
     public void setCustomerBuffer(Customer cust) {
@@ -181,10 +187,11 @@ public class GUI3Add extends javax.swing.JFrame {
         emp.setCalendar(txtBegDate.getSelectedDate());
         emp.setDate(emp.getCalendar().getTime());//Convert calendar to java.util.date
         emp.setDateSql(new java.sql.Date(emp.getDate().getTime()));//COnvert java.util.date to java.sql.date
-
-        ///We create an instance 
+        
+        ///We create an instance of EmployerDAO and we add the Job into the Db with the id of the employer who added this job (to define
+        ///later if it's a new employer or not
         EmployerDAO empl = new EmployerDAOImpl();
-        empl.addJob(emp.getJobTitle(), emp.getDateSql(), emp.getJobDescription(), emp.getCompany());
+        empl.addJob(emp.getJobTitle(), emp.getDateSql(), emp.getJobDescription(), emp.getCompany(),customerBuffer.getId());
         ///It refreshes the text boxes as empty cases
         txtJobTitle.setText("");
         txtJobDesc.setText("");

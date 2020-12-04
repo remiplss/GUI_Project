@@ -130,8 +130,10 @@ public class GUI3 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtJobActionPerformed
 
     private void ButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddActionPerformed
-        GUI3Add jPanel4 = new GUI3Add(); //Init the Add GUI
+        GUI3Add jPanel4 = new GUI3Add(emp); //Init the Add GUI
                 //jPanel4.setCustomerBuffer(customerBuffer);
+                //ransfert(emp);
+        //jPanel4.setCustomerBuffer(emp);
                 jPanel4.setVisible(true);
     }//GEN-LAST:event_ButtonAddActionPerformed
 
@@ -148,10 +150,9 @@ public class GUI3 extends javax.swing.JFrame {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         ///If the employer wants to disconnect himself from the application
-        this.dispose();
-        //System.exit(0);
-        /*GUI nv = new GUI();
-        nv.setVisible(true);  */      
+        GUI nv = new GUI();
+        this.dispose(); 
+        nv.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
     public void transfert(Customer customerBuffer) //Transfering data from the buffer to the Job Seeker object
@@ -164,7 +165,9 @@ public class GUI3 extends javax.swing.JFrame {
         System.out.println(emp.getEmail());
         emp.setPassword(customerBuffer.getPassword());
         System.out.println(emp.getPassword());
-        emp.setType(customerBuffer.getType());
+        emp.setType(customerBuffer.getType());      
+        emp.setId(customerBuffer.getId());
+        System.out.println("Prenom = "+emp.getFirstName()+ "idUser = "+emp.getId());
         jLabel1.setText("Employer " +emp.getFirstName()+" "+emp.getLastName());
     }
 
@@ -172,8 +175,6 @@ public class GUI3 extends javax.swing.JFrame {
         return txtJob;
     }
     
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAdd;
     private javax.swing.JButton ButtonSee;

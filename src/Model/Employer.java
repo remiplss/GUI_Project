@@ -28,7 +28,6 @@ public class Employer extends Customer
         this.dateSql = dateSql;
     }
     
-
     public String getJobTitle() {
         return this.jobTitle;
     }

@@ -60,28 +60,14 @@ public class PieChart extends JFrame {
 
             DataSource dataSource = new DataSource();
             con1 = dataSource.createConnection();
-
-            /*
-             String query = "SELECT * FROM job"; //query
-             Statement st= con1.createStatement();//get the values from job
             
-             ResultSet rs = st.executeQuery(query); //get the result
-             // iterate through the java resultset
-             do{
-             rs.next();//next row
-             jobList.add(rs.getString(1)); //Put all the job in an ArrayList
-                
-             }while(!rs.isLast());//While we are not at the end of the table
-             */
             for (int i = 1; i <= jobList.size(); i++) //for all the job that exist
             {
                 System.out.println("int  = "/*+rs2.getInt(i)*/);
                 String query2 = "SELECT COUNT(*) FROM jobseekerlist WHERE Job= '" + jobList.get(i - 1) + "'"; //we count the number of applicants per Job
                 Statement st2 = con1.createStatement();// = con1.prepareStatement(query2);
                 //st2.setString(1,jobList.get(i));//We put the curent job in the query
-
                 ResultSet rs2 = st2.executeQuery(query2); //get the result
-
                 do {
                     rs2.next();//next row
 
@@ -93,10 +79,8 @@ public class PieChart extends JFrame {
         catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         System.out.println(result);
         return result;
-
     }
 
     /**

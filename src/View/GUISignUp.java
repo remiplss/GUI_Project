@@ -185,8 +185,7 @@ public class GUISignUp extends javax.swing.JFrame {
         UserDAO userDAO = new UserDAOImpl();
         userDAO.addUser(customerBuffer);    
         this.setVisible(false);
-        gui.setVisible(true);
-        
+        gui.setVisible(true);       
     }//GEN-LAST:event_validateInscriptionActionPerformed
      
     

@@ -163,7 +163,8 @@ public class AgencyOfficialDAOImpl implements AgencyOfficialDAO {
     @Override
     public void deleteJobById(int idJob) {
         ///we make a query using an inner join to delete the job in the DB and to delete all the applicants which applied for thisjob
-        String query = "DELETE job,jobseekerlist FROM job INNER JOIN jobseekerlist on jobseekerlist.idJob = job.idJob WHERE job.idJob=?";
+        //String query = "DELETE job,jobseekerlist FROM job LEFT JOIN jobseekerlist on jobseekerlist.idJob = job.idJob WHERE job.idJob=?";
+        String query = "DELETE job,jobseekerlist FROM job LEFT JOIN jobseekerlist  ON job.idJob = jobseekerlist.idJob WHERE job.idJob=?";
        
         try {
             //DataSource dataSource = new DataSource();

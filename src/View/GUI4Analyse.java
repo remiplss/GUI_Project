@@ -104,35 +104,14 @@ public class GUI4Analyse extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void importJob() {
-        
-        
+
         AgencyOfficialDAO agencyDao = new AgencyOfficialDAOImpl();
         this.jobLists = agencyDao.seeJobsTitle();
         for(int i = 0; i<jobLists.size();i++)
         {
             txtJob.addItem(jobLists.get(i));
         }
-        /*
-        try {
-        //Import Job values from SQL//
 
-            DataSource dataSource = new DataSource();
-            con1 = dataSource.createConnection();
-
-            String query = "SELECT * FROM job"; //query
-            Statement st = con1.createStatement();//get the values from job
-
-            ResultSet rs = st.executeQuery(query); //get the result
-            // iterate through the java resultset
-            do {
-                rs.next();//next row
-                txtJob.addItem(rs.getString(1));//add the job to the comboBox
-
-            } while (!rs.isLast());//While we are not at the end of the table
-        } //Exceptions//
-        catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(GUI4Analyse.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
