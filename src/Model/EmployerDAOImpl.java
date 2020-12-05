@@ -60,17 +60,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author romanphilip
  */
-public class EmployerDAOImpl implements EmployerDAO {
+public class EmployerDAOImpl implements EmployerDAO, Fees {
 
-        private Connection con1 = null;       
-        private PreparedStatement insert = null;
+    private Connection con1 = null;
+    private PreparedStatement insert = null;
 
     /*@Override
      public void addEmployer(Employer emp) {
      }*/
     @Override
-    public void addJob(String jobTitle, java.sql.Date date, String jobDescription, String company,int id) {
-        
+    public void addJob(String jobTitle, java.sql.Date date, String jobDescription, String company, int id) {
 
         String sql = "insert into job(JobTitle,BeginningDate,JobDescription,Company,idUser)values(?,?,?,?,?)";
 
@@ -85,7 +84,7 @@ public class EmployerDAOImpl implements EmployerDAO {
             insert.setDate(2, date);
             insert.setString(3, jobDescription);
             insert.setString(4, company);
-            insert.setInt(5,id);
+            insert.setInt(5, id);
             insert.executeUpdate();
             JOptionPane.showMessageDialog(null, "Job added successfully");
 
@@ -116,7 +115,7 @@ public class EmployerDAOImpl implements EmployerDAO {
     }
 
     @Override
-    public ArrayList<JobSeeker> getApplicantsByJob(String jobTitle) {       
+    public ArrayList<JobSeeker> getApplicantsByJob(String jobTitle) {
         ArrayList<JobSeeker> applicants = new ArrayList<JobSeeker>();
         try {   //Import Job from SQL
 
@@ -142,22 +141,20 @@ public class EmployerDAOImpl implements EmployerDAO {
         }
         return applicants;
     }
-    
-    
+
     @Override
     public ArrayList<String> getAllJobs() {
-        
+
         ArrayList<String> listJobs = new ArrayList<>();
 
         try {   //Import Job from SQL
 
             DataSource dataSource = new DataSource();
             con1 = dataSource.createConnection();
-            
 
             String query = "SELECT * FROM job ";  //query
             insert = con1.prepareStatement(query);  //sending query to server
-            
+
             ResultSet rs = insert.executeQuery(); //get the query result in rs
 
             while (rs.next()) //while there is a next row
@@ -171,7 +168,7 @@ public class EmployerDAOImpl implements EmployerDAO {
             e.printStackTrace();
 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JobSeekerDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmployerDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (insert != null) {
@@ -192,8 +189,53 @@ public class EmployerDAOImpl implements EmployerDAO {
         }
         return listJobs;
     }
-            
-            
-   
+
+    
+     public int computeFees(Customer cust) {
+         
+         int count = 0;
+        try {   //Import Job from SQL
+
+            DataSource dataSource = new DataSource();
+            con1 = dataSource.createConnection();
+
+            String query = "SELECT COUNT(*) FROM job where idUsre =? ";
+            insert = con1.prepareStatement(query);  //sending query to server
+            insert.setInt(1, cust.getId());
+            ResultSet rs = insert.executeQuery(query);
+
+            while (rs.next()) {
+
+                count = rs.getInt(1);
+                System.out.println("occurence d'id : " + cust.getId() + " : " + count);
+//---------------------------------------------A FINIR------------------------------------------------------------------------------------------///
+            }
+        } //Exceptions
+        catch (SQLException e) {
+
+            e.printStackTrace();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployerDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (insert != null) {
+                try {
+                    insert.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (con1 != null) {
+                try {
+                    con1.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+       
+     }
 
 }

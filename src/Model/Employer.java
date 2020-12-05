@@ -13,6 +13,7 @@ public class Employer extends Customer
     private Calendar calendar;
     private java.util.Date date;
     private java.sql.Date dateSql;
+    private float totalFees;
 
 //Blabla pour que vous recuperiez les modifs de la classe
     public Employer(){}
