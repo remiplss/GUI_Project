@@ -46,12 +46,15 @@ package Model;
  * @author romanphilip
  */
 public interface Fees {
-    /*
-    public static final int FEES_NEW_EMP = 5;
-    public static final int FEES_OLD_EMP = 2;*/
     
-
-    public int computeTotalFees(Customer cust);
+    public static final int FEES_NEW_EMP = 5;
+    public static final int FEES_OLD_EMP = 2;
+    
+    //Method which return the number of job addedby the employer (to determines if he's  a new or an old emp)
+    public int computeTotalFees(int id);
+    
+    public void valueFees(int count, Employer emp);
+    
    
     
 }

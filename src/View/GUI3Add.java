@@ -5,6 +5,7 @@ import Model.DataSource;
 import Model.Employer;
 import Model.EmployerDAO;
 import Model.EmployerDAOImpl;
+import Model.Fees;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,17 +22,18 @@ public class GUI3Add extends javax.swing.JFrame {
     public Customer customerBuffer = new Customer();
     public Employer emp = new Employer();
 
+
     Connection con1;
     PreparedStatement insert;
 
     public GUI3Add(Customer customerBuffer) {
         this.customerBuffer = customerBuffer;
-        System.out.println("idUser "+customerBuffer.getId());
-        initComponents(); 
+        //System.out.println("idUser ADD gui  " + customerBuffer.getId());
+        initComponents();
     }
-    
+
     //constructor by default
-    public GUI3Add(){
+    public GUI3Add() {
         initComponents();
     }
 
@@ -180,6 +182,7 @@ public class GUI3Add extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        int c;
         //get value from the GUI in the emp Object//
         emp.setJobTitle(txtJobTitle.getText());
         emp.setJobDescription(txtJobDesc.getText());
@@ -187,17 +190,21 @@ public class GUI3Add extends javax.swing.JFrame {
         emp.setCalendar(txtBegDate.getSelectedDate());
         emp.setDate(emp.getCalendar().getTime());//Convert calendar to java.util.date
         emp.setDateSql(new java.sql.Date(emp.getDate().getTime()));//COnvert java.util.date to java.sql.date
-        
+
         ///We create an instance of EmployerDAO and we add the Job into the Db with the id of the employer who added this job (to define
         ///later if it's a new employer or not
         EmployerDAO empl = new EmployerDAOImpl();
-        empl.addJob(emp.getJobTitle(), emp.getDateSql(), emp.getJobDescription(), emp.getCompany(),customerBuffer.getId());
+        empl.addJob(emp.getJobTitle(), emp.getDateSql(), emp.getJobDescription(), emp.getCompany(), customerBuffer.getId());
         ///It refreshes the text boxes as empty cases
         txtJobTitle.setText("");
         txtJobDesc.setText("");
         txtCompany.setText("");
         txtBegDate.setSelectedDate(null);
         txtJobTitle.requestFocus();///It goes back to the first line, which is Job Title
+        Fees empTest = new EmployerDAOImpl();
+        c = empTest.computeTotalFees(customerBuffer.getId());
+        empTest.valueFees(c, emp);
+        System.out.println(customerBuffer.getFirstName() + " total feees GUI3 ADD :" + emp.getTotalFees());
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

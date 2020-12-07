@@ -181,6 +181,7 @@ public class GUI extends javax.swing.JFrame {
             GUI3 jPanel3 = new GUI3(); //Init the Employer GUI
             //jPanel3.setCustomerBuffer(customerBuffer); //set the customer buffer in the new GUI
             jPanel3.transfert(customerBuffer);
+            
             jPanel3.setVisible(true);
 
         }

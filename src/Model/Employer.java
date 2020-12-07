@@ -13,13 +13,13 @@ public class Employer extends Customer
     private Calendar calendar;
     private java.util.Date date;
     private java.sql.Date dateSql;
-    private float totalFees;
+    private int totalFees;
 
 //Blabla pour que vous recuperiez les modifs de la classe
     public Employer(){}
     
     public Employer(String jobTitle, String jobDescription, String company, Calendar calendar, java.util.Date date,
-            java.sql.Date dateSql, String email, String password, String type, String firstName, String lastName, int id) {
+            java.sql.Date dateSql, String email, String password, String type, String firstName, String lastName, int id,int totalfees) {
         super(email, password, type, firstName, lastName,id);
         this.jobTitle = jobTitle;
         this.jobDescription = jobDescription;
@@ -27,6 +27,7 @@ public class Employer extends Customer
         this.calendar = calendar;
         this.date = date;
         this.dateSql = dateSql;
+        this.totalFees = totalFees;
     }
     
     public String getJobTitle() {
@@ -77,13 +78,24 @@ public class Employer extends Customer
         this.dateSql = dateSql;
     }
     
+    @Override
     public int getId() {
         return this.id;
     }
     
+    @Override
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getTotalFees() {
+        return totalFees;
+    }
+
+    public void setTotalFees(int totalFees) {
+        this.totalFees = totalFees;
+    }
+    
 
     @Override
     public String toString() {

@@ -65,9 +65,6 @@ public class EmployerDAOImpl implements EmployerDAO, Fees {
     private Connection con1 = null;
     private PreparedStatement insert = null;
 
-    /*@Override
-     public void addEmployer(Employer emp) {
-     }*/
     @Override
     public void addJob(String jobTitle, java.sql.Date date, String jobDescription, String company, int id) {
 
@@ -190,26 +187,28 @@ public class EmployerDAOImpl implements EmployerDAO, Fees {
         return listJobs;
     }
 
-    
-     public int computeFees(Customer cust) {
-         
-         int count = 0;
+    @Override
+    public int computeTotalFees(int id) {
+
+        int count = 0;
         try {   //Import Job from SQL
 
+            System.out.println("Id user in compute fees : " + id);
             DataSource dataSource = new DataSource();
             con1 = dataSource.createConnection();
 
-            String query = "SELECT COUNT(*) FROM job where idUsre =? ";
+            String query = "SELECT COUNT(*) FROM job WHERE idUser =?";
+
             insert = con1.prepareStatement(query);  //sending query to server
-            insert.setInt(1, cust.getId());
-            ResultSet rs = insert.executeQuery(query);
+            insert.setInt(1, id);
+            ResultSet rs = insert.executeQuery();
 
             while (rs.next()) {
 
                 count = rs.getInt(1);
-                System.out.println("occurence d'id : " + cust.getId() + " : " + count);
-//---------------------------------------------A FINIR------------------------------------------------------------------------------------------///
+                System.out.println("occurence d'id : " + id + " : " + count);
             }
+            System.out.println("Count : " + count);
         } //Exceptions
         catch (SQLException e) {
 
@@ -235,7 +234,22 @@ public class EmployerDAOImpl implements EmployerDAO, Fees {
                 }
             }
         }
-       
-     }
+        return count;
+    }
+    
+    @Override
+    public void valueFees(int count, Employer emp){ ///give the value of fees following the number of jobs added for an employer
 
+
+        if(count == 0){
+            emp.setTotalFees(0);
+        }
+        else if(count >=1 && count <=5){
+           emp.setTotalFees(count* (emp.getTotalFees() + FEES_NEW_EMP));
+       }
+       else{
+           emp.setTotalFees(count*(emp.getTotalFees() + FEES_OLD_EMP));
+       }
+    }
+    
 }
