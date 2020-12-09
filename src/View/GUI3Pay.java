@@ -177,7 +177,7 @@ public class GUI3Pay extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonPayActionPerformed
 
-    public void transfert(Customer customerBuffer) //Transfering data from the buffer to the Job Seeker object
+    public void transfert(Customer customerBuffer,Employer emplo) //Transfering data from the buffer to the Job Seeker object
     {
 
         emp.setFirstName(customerBuffer.getFirstName());
@@ -190,6 +190,7 @@ public class GUI3Pay extends javax.swing.JFrame {
         System.out.println(emp.getPassword());
         emp.setType(customerBuffer.getType());
         emp.setId(customerBuffer.getId());
+        emp.setTotalFees(emplo.getTotalFees());
         System.out.println("Prenom = " + emp.getFirstName() + "idUser = " + emp.getId());
 
         jTextFirstName.setText(emp.getFirstName());

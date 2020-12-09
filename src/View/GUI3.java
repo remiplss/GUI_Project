@@ -183,8 +183,7 @@ public class GUI3 extends javax.swing.JFrame {
         System.out.println("firstname " +emp.getFirstName());
         System.out.println("lastname " +emp.getLastName());
         System.out.println("id " +emp.getId());
-        gui3pay.transfert(emp);
-        
+        gui3pay.transfert(emp,emp);        
     }//GEN-LAST:event_jButtonBalanceActionPerformed
 
     public void transfert(Customer customerBuffer) //Transfering data from the buffer to the Job Seeker object
