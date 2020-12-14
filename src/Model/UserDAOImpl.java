@@ -59,12 +59,14 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addUser(Customer customer) {
-
+        
+        boolean test = false;
         try {
             DataSource dataSource = new DataSource();
             con1 = dataSource.createConnection();
-
+            test = searchUser(customer.getEmail());
             ///Query which insert a user into the DB
+            if(test==false){
             String query = "insert into user(Email,Password,Type,FirstName,LastName)values(?,?,?,?,?)";
             insert = con1.prepareStatement(query);
             
@@ -80,7 +82,10 @@ public class UserDAOImpl implements UserDAO {
 
             ///We print a JOptionPane message if the account is created
             JOptionPane.showMessageDialog(null, "Wonderful ! \nAccount succesfully created");//Display a message
-            
+            } 
+            else{
+                JOptionPane.showMessageDialog(null, "This account already exist");//Display a message
+            }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(JobSeekerDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -100,8 +105,58 @@ public class UserDAOImpl implements UserDAO {
                     e.printStackTrace();
                 }
             }
+            
 
         }
     }
+    @Override
+    public boolean searchUser(String email){
+        
+        boolean test = false;
+        try{
+          
+        DataSource dataSource = new DataSource();
+        con1 = dataSource.createConnection();
+        String query = "SELECT * FROM user WHERE Email LIKE ?"; 
+        insert = con1.prepareStatement(query);
+        insert.setString(1, email); //Select user's email in the database
+        
+        ResultSet rs = insert.executeQuery(); //get the query result in rs
 
+            while (rs.next()) //while there is a next row
+            {
+                if(email.equals(rs.getString("Email"))){
+                    test = true;
+                } 
+                else{
+                    test = false;
+                }
+            }
+        } //Exceptions
+        catch (SQLException e) {
+
+            e.printStackTrace();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployerDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (insert != null) {
+                try {
+                    insert.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (con1 != null) {
+                try {
+                    con1.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return test;
+    }
 }

@@ -16,9 +16,9 @@ public class DataSource {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //Db parameters
-            String url = "jdbc:mysql://localhost/gui_sql";
+            String url = "jdbc:mysql://localhost:3307/gui_sql";
             String user = "root";
-            String password = "roro94220";
+            String password = "";
 
                 ///Create a connection to the database
             conn = DriverManager.getConnection(url, user, password);

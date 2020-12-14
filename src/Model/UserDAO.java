@@ -49,5 +49,7 @@ public interface UserDAO {
     
     //Method which add a user into the db when the user creates an account
     public void addUser(Customer customer);
-    
+    /*Method which search the email of an user in the db to see
+    if there is already an account with this email*/
+    public boolean searchUser(String email);
 }
