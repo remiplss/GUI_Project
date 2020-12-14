@@ -74,7 +74,7 @@ public class GUI4Delete extends javax.swing.JFrame {
 
     protected void displayJobs() {
         int c;
-        // try {
+        
         ArrayList<Job> listJobs = new ArrayList<>();
 
         Object rowData[] = new Object[5];///Array of Object which wil
@@ -208,8 +208,7 @@ public class GUI4Delete extends javax.swing.JFrame {
         int selectedIndex = jTable1.getSelectedRow();
         
         ///Connect to the database
-        ///try {
-       String job;
+        String job;
         int id = Integer.parseInt(df.getValueAt(selectedIndex, 4).toString());///It takes the id of the selected job
         int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete the job ?", "Warning", JOptionPane.YES_NO_OPTION);///We ask the official if he/she really want to delete the job
         

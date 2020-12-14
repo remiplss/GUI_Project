@@ -22,26 +22,10 @@ public class JobSeeker extends Customer
 
     //Constructor//
     public JobSeeker(){}
-    /*public JobSeeker(String email, String password, String type,String firstName, String lastName,
-     String phone, String job, String status, Calendar calendar, java.util.Date date, java.sql.Date dateSql) 
-     {
-        super(email,password,type);
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.job = job;
-        this.status = status;
-        this.calendar = calendar;
-        this.date = date;
-        this.dateSql = dateSql;
-    }*/
 
     public JobSeeker(String phone, String job, String status, Calendar calendar, java.util.Date date, java.sql.Date dateSql
             , String email, String password, String type, String firstName, String lastName,int id,int idJob) {
         super(email, password, type, firstName, lastName,id);
-        //this.firstName = firstName;
-        //this.lastName = lastName;
         this.phone = phone;
         this.job = job;
         this.status = status;
@@ -57,24 +41,6 @@ public class JobSeeker extends Customer
         this.phone = phone;
         this.status = status;
     }
-
-/*
-    //Getters/Setters//
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }*/
 
     public String getPhone() {
         return this.phone;
@@ -140,9 +106,6 @@ public class JobSeeker extends Customer
         return idJob;
     }
     
-    
-    
-
     //toString()//
     @Override
     public String toString() {

@@ -66,7 +66,6 @@ public class JobSeekerDAOImpl implements JobSeekerDAO {
         try {
             DataSource dataSource = new DataSource();
             con1 = dataSource.createConnection();
-            //String query ="UPDATE  user SET FirstName = ?,LastName = ?,Phone = ?,Job =CONCAT(Job,',',?),Date =CONCAT(Date,',',),Status = ?WHERE Email = ?"; //query
             String query = "INSERT INTO jobseekerlist (Email,Type,FirstName,LastName,Job,Date,Phone,Status,idJob,idJs) values(?,?,?,?,?,?,?,?,?,?)";
 
             //Insert user values in the database//
@@ -113,9 +112,6 @@ public class JobSeekerDAOImpl implements JobSeekerDAO {
     @Override
     public ArrayList<String> getDescriptionsByJob(String jobTitle) {
 
-        /*
-         Connection con1 = null;
-         PreparedStatement insert = null;*/
         ArrayList<String> applicants = new ArrayList<>();
         try {   //Import Job from SQL
 

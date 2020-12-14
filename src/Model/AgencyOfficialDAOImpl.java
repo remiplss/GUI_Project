@@ -119,14 +119,10 @@ public class AgencyOfficialDAOImpl implements AgencyOfficialDAO {
             con1 = dataSource.createConnection();
 
             String query = "SELECT * FROM job";  //query
-            //String query2 = "SELECT COUNT(*) FROM Job";
             insert = con1.prepareStatement(query);  //sending query to server
 
             ResultSet rs = insert.executeQuery(); //get the query result in rs
-            //ResultSet rs2 = insert.executeQuery();
 
-            /*rs2.next();
-             c = rs2.getInt(1);*/
             while (rs.next()) //while there is a next row
             {
                 ///While there is a next line in the table JobSeekerList, we create a new instance of JobSeeker whith the data took from the dataBase        
@@ -167,11 +163,9 @@ public class AgencyOfficialDAOImpl implements AgencyOfficialDAO {
         String query = "DELETE job,jobseekerlist FROM job LEFT JOIN jobseekerlist  ON job.idJob = jobseekerlist.idJob WHERE job.idJob=?";
        
         try {
-            //DataSource dataSource = new DataSource();
             con1 = dataSource.createConnection();
             insert = con1.prepareStatement(query);
             insert.setInt(1, idJob);
-            //insert.setInt(2, idJob);
             insert.executeUpdate(); //It updates our dataBase
         } catch (SQLException e) {
 

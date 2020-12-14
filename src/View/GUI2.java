@@ -23,7 +23,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GUI2 extends javax.swing.JFrame {
 
-    //public Customer customerBuffer = new Customer();
     public JobSeeker js = new JobSeeker();
     private ArrayList<String> jobLists;  
 
@@ -46,11 +45,6 @@ public class GUI2 extends javax.swing.JFrame {
         }
     }
 
-    //setter
-    /*public void setCustomerBuffer(Customer cust)
-     {
-     this.customerBuffer = cust;    
-     }*/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

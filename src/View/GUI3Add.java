@@ -28,7 +28,6 @@ public class GUI3Add extends javax.swing.JFrame {
 
     public GUI3Add(Customer customerBuffer) {
         this.customerBuffer = customerBuffer;
-        //System.out.println("idUser ADD gui  " + customerBuffer.getId());
         initComponents();
     }
 

@@ -55,7 +55,7 @@ public interface AgencyOfficialDAO {
    ///Method which returns all the Jobs from the database in an ArrayList
     public ArrayList<Job> getAllJobs();
     
-    ///methode which delete the job selected (in the jtable) in the database
+    ///method which delete the job selected (in the jtable) in the database
     public void deleteJobById(int idJob);
     
 }

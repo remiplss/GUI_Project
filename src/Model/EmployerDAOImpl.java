@@ -130,7 +130,7 @@ public class EmployerDAOImpl implements EmployerDAO, Fees {
             {
                 ///While there is a next line in the table JobSeekerList, we create a new instance of JobSeeker whith the data took from the dataBase
                 JobSeeker appli = new JobSeeker(rs.getString("FirstName"), rs.getString("LastName"), rs.getString("Phone"), rs.getString("Email"), rs.getString("Status"));
-                applicants.add(appli);//We add the 
+                applicants.add(appli);//We add the job seeker to the list
             }
         } //Exceptions
         catch (ClassNotFoundException | SQLException ex) {
@@ -239,7 +239,6 @@ public class EmployerDAOImpl implements EmployerDAO, Fees {
     
     @Override
     public void valueFees(int count, Employer emp){ ///give the value of fees following the number of jobs added for an employer
-
 
         if(count == 0){
             emp.setTotalFees(0);

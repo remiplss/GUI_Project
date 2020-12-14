@@ -46,6 +46,7 @@ public class GUI extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         txtType = new javax.swing.JComboBox<String>();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         Title = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -77,6 +78,13 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("I have no account");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -90,9 +98,11 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -117,7 +127,9 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addComponent(jButton2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -166,31 +178,22 @@ public class GUI extends javax.swing.JFrame {
     public void userTest() {
         //if you select "Job seeker"//
         if (customerBuffer.getType().equals("Job seeker")) {
-            //jPanel1.setVisible(false);
             GUI2 jPanel2 = new GUI2(); //Init the job seeker GUI
-            //jPanel2.setCustomerBuffer(customerBuffer); //set the customer buffer in the new GUI
             jPanel2.transfert(customerBuffer);
-            //System.out.println(customerBuffer.getEmail());
             jPanel2.setVisible(true);
 
         }
         //if you select "Employer"//
         if (customerBuffer.getType().equals("Employer")) {
 
-            //jPanel1.setVisible(true);
             GUI3 jPanel3 = new GUI3(); //Init the Employer GUI
-            //jPanel3.setCustomerBuffer(customerBuffer); //set the customer buffer in the new GUI
-            jPanel3.transfert(customerBuffer);
-            
+            jPanel3.transfert(customerBuffer);           
             jPanel3.setVisible(true);
-
         }
         //if you select "Agency"//
         if (customerBuffer.getType().equals("Agency")) {
 
-            //jPanel1.setVisible(true);
             GUI4 jPanel4 = new GUI4(); //Init the Agency GUI
-            //jPanel4.setCustomerBuffer(customerBuffer);//set the customer buffer in the new GUI
             jPanel4.transfert(customerBuffer);
             jPanel4.setVisible(true);
         }
@@ -231,7 +234,6 @@ public class GUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         //get value from the GUI in the customer buffer//
-        //On doit set le nom et prenom mais jsp si on doit le recuperer depuis la bdd ou utilise la fonction transfert
         customerBuffer.setEmail(txtEmail.getText());
         customerBuffer.setPassword(txtPassword.getText());
         customerBuffer.setType(txtType.getSelectedItem().toString());
@@ -243,8 +245,7 @@ public class GUI extends javax.swing.JFrame {
         
 
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
-            //con1 = DriverManager.getConnection("jdbc:mysql://localhost/gui_sql", "root", "roro94220"); //Connection
+            
             ///We create the link with the Db
             DataSource dataSource = new DataSource();
             con1 = dataSource.createConnection();
@@ -295,8 +296,7 @@ public class GUI extends javax.swing.JFrame {
                     }
                 }
                 con1.close();
-            }
-            ////Il reste deux blindages à faire, à savoir si le password et l'email sont faux mais bon type  et si les 3 champs sont faux                 
+            }                 
             dispose();//Dispose the JFrame
         } //Exceptions//
         catch (ClassNotFoundException | SQLException ex) {
@@ -316,6 +316,7 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Title;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

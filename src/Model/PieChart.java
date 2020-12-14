@@ -66,7 +66,6 @@ public class PieChart extends JFrame {
                 System.out.println("int  = "/*+rs2.getInt(i)*/);
                 String query2 = "SELECT COUNT(*) FROM jobseekerlist WHERE Job= '" + jobList.get(i - 1) + "'"; //we count the number of applicants per Job
                 Statement st2 = con1.createStatement();// = con1.prepareStatement(query2);
-                //st2.setString(1,jobList.get(i));//We put the curent job in the query
                 ResultSet rs2 = st2.executeQuery(query2); //get the result
                 do {
                     rs2.next();//next row

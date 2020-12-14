@@ -21,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GUI4 extends javax.swing.JFrame {
 
-    //public Customer customerBuffer = new Customer();
     public AgencyOfficial ao = new AgencyOfficial();
     private final GUI4Delete gui4Delete = new GUI4Delete();
 
@@ -29,10 +28,6 @@ public class GUI4 extends javax.swing.JFrame {
         initComponents();       
             
     }
-
-   /* public void setCustomerBuffer(Customer cust) {
-        this.customerBuffer = cust;
-    }*/
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,16 +113,13 @@ public class GUI4 extends javax.swing.JFrame {
         switch (itemText) {
             case "Add new job(s)":
                 GUI3Add nvJob = new GUI3Add();
-                //nvJob.setCustomerBuffer(customerBuffer);
                 nvJob.setTitle("Interface to add new job(s)");
                 nvJob.setVisible(true);
 
                 break;
             case "Delete old job(s)":          
                 gui4Delete.displayJobs();
-                gui4Delete.setVisible(true);
-                //dispose();
-                ///Mettre à jour la bdd JOB et user  
+                gui4Delete.setVisible(true); 
                 break;
             case "Analyse most popular jobs":
                 PieChart pie = new PieChart("", "Job's popularity");

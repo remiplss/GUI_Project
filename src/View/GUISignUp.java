@@ -26,8 +26,6 @@ public class GUISignUp extends javax.swing.JFrame {
      */
     public GUISignUp() {
         initComponents();
-        //this.gui =
-        //this.guiWC = new GUIWelcome();
     }
 
     /**
@@ -106,9 +104,7 @@ public class GUISignUp extends javax.swing.JFrame {
                     .addComponent(typeTxt, 0, 154, Short.MAX_VALUE)
                     .addComponent(passwordTxt)
                     .addComponent(firstNameTxt))
-                .addContainerGap(154, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(validateInscription)
                 .addGap(33, 33, 33))
         );

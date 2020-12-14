@@ -163,11 +163,7 @@ public class GUI3 extends javax.swing.JFrame {
     private void ButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddActionPerformed
         GUI3Add jPanel4 = new GUI3Add(emp); //Init the Add GUI
         int count = 0;
-        //jPanel4.setCustomerBuffer(customerBuffer);
-        //ransfert(emp);
-        //jPanel4.setCustomerBuffer(emp);
         jPanel4.setVisible(true);
-        //jTotalToPay.setText("You have to pay "+emp.getTotalFees());
         count = countJobAddedAndComputeFees(emp);
         if (count > 5) {
             JOptionPane.showMessageDialog(null, "You are considered as an old employer, you will only pay 2$ per job added");
@@ -202,7 +198,7 @@ public class GUI3 extends javax.swing.JFrame {
         emp.setId(customerBuffer.getId());
         System.out.println("Prenom = " + emp.getFirstName() + "idUser = " + emp.getId());
 
-        ///We call the methode wich determines how much jobs the employer added
+        ///We call the method wich determines how much jobs the employer added
         count = countJobAddedAndComputeFees(emp);
         setFeesToEmp(count, emp);
 
